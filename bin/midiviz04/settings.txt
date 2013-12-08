@@ -1,0 +1,26 @@
+OSC Send IP Number
+127.0.0.1
+
+OSC Send Port
+7110
+
+Send OSC Active
+true
+
+Stage Width
+960
+
+Stage Height
+240
+
+Framerate
+60
+
+MIDI Channel Number
+0
+
+MIDI Port Number
+0
+
+MIDI Velocity Floor
+63

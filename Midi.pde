@@ -2,24 +2,33 @@ import promidi.*;
 
 MidiIO midiIO;
 
+int midiChannelNum = 0;
+int midiPortNum = 0;
+int velocityFloor = 63;
+
 //arbitrary setup function
 void initMidi(){
   midiIO = MidiIO.getInstance(this);
   println("printPorts of midiIO");
   midiIO.printDevices();
-  midiIO.openInput(0,0);
+  try{
+    midiIO.openInput(midiChannelNum,midiPortNum);
+  }catch(Exception e){
+    midiIO.openInput(0,0);
+  }
 }
 
 //built-in receiver functions
 void noteOn(Note note, int deviceNumber, int midiChannel){
   int vel = note.getVelocity();
   int pit = note.getPitch();
-  println("noteON:  p ." + pit + "   v . " + vel);
+  println("noteON:  p ." + pit + "   v . " + (vel + velocityFloor));
   if(vel==0){
     n[pit].alive = false;
   }else{
-    n[pit].init(vel);
+    n[pit].init(vel + velocityFloor);
   }
+  updateOsc1(pit,vel + velocityFloor);
   /*
   fill(255,vel*2,pit*2,vel*2);
   stroke(255,vel);
