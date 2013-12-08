@@ -16,6 +16,7 @@ class Settings {
         if (settings.data[i].equals("Stage Width")) sW = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Stage Height")) sH = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Framerate")) fps = setInt(settings.data[i+1]);
+        if (settings.data[i].equals("Key Control")) keyControl = setBoolean(settings.data[i+1]);
        }
     } 
     catch(Exception e) {

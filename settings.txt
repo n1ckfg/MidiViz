@@ -24,3 +24,6 @@ MIDI Port Number
 
 MIDI Velocity Floor
 63
+
+Key Control
+true
