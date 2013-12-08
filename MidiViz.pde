@@ -1,15 +1,25 @@
+//note: current OpenCV library requires Processing 1.5 for export. Need a replacement!
+
 import processing.opengl.*;
+
+int sW = 192*5;
+int sH = 48*5;
+int fps = 60;
 
 int numNotes = 128;
 NoteObj[] n = new NoteObj[numNotes];
 
 void setup(){
-  size(192*5, 48*5, OPENGL);
+  Settings settings = new Settings("settings.txt");
+  size(sW, sH, OPENGL);
+  frameRate(fps);
   smooth();
   initMidi();
   for(int i=0;i<numNotes;i++){
     n[i] = new NoteObj(i);
   }
+  initOsc();
+  initOpenCV();
 }
 
 void draw(){
@@ -17,6 +27,11 @@ void draw(){
   for(int i=0;i<numNotes;i++){
     n[i].run();
   }
+  updateOpenCV();
+}
+
+void stop(){
+  shutdownOpenCV();
 }
 
 
